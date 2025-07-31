@@ -1,26 +1,28 @@
-import { useSelector } from "react-redux";
+const products = [
+  {
+    id: 1,
+    name: "Product 1",
+    image: "https://via.placeholder.com/150",
+    description: "Description for Product 1",
+    price: 29.99,
+    rating: 4.5,
+    likes: 10,
+  },
+];
 
 function Amazon() {
-  const products = useSelector((state) => state.products?.data || []); // Added fallback for undefined state
-  console.log("Products state in Amazon component:", products); // Debugging the products state
-
   return (
-    <div>
-      {products.length > 0 ? (
-        products.map((product) => (
-          <div key={product.id} className="product">
-            <h1>{product.name}</h1>
-            <img src={product.image} alt={product.name} />
-            <p>{product.description}</p>
-            <p>Price: ${product.price}</p>
-            <p>Rating: {product.rating} stars</p>
-            <p>Likes: {product.likes}</p>
-          </div>
-        ))
+    <>
+      {products.length ? (
+        <ul>
+          {products.map((product, index) => {
+            return <li key={index}>{product.name}</li>;
+          })}
+        </ul>
       ) : (
-        <p>No products available</p> // Added fallback message for empty data
+        "No"
       )}
-    </div>
+    </>
   );
 }
 
